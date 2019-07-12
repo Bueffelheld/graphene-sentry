@@ -13,7 +13,6 @@ from django.urls import reverse
 from graphql import GraphQLError
 from graphql.error import GraphQLLocatedError
 
-
 test_phrase = 'THIS IS TEEEEEEEEST!'
 
 
@@ -69,16 +68,16 @@ def test_file_upload_view(client: Client):
     content = data.get('data', {}).get('testFileUpload', {}).get('content')
 
     assert result.status_code == OK
-    assert success == True
+    assert success
     assert content == test_phrase
 
 
 @patch.object(views.GraphQLView, 'execute_graphql_request')
 @patch('sentry_sdk.capture_exception')
 def test_execute_graphql_request(
-    mocked_capture_exception,
-    mocked_method,
-    client,
+        mocked_capture_exception,
+        mocked_method,
+        client,
 ):
     error = CustomException('Boom')
     errors = [GraphQLLocatedError([], error)]
@@ -99,9 +98,9 @@ def test_execute_graphql_request(
 @patch.object(views.GraphQLView, 'execute_graphql_request')
 @patch('sentry_sdk.capture_exception')
 def test_execute_graphql_file_upload_request(
-    mocked_capture_exception,
-    mocked_method,
-    client,
+        mocked_capture_exception,
+        mocked_method,
+        client,
 ):
     error = CustomException('Boom')
     errors = [GraphQLLocatedError([], error)]
@@ -120,9 +119,9 @@ def test_execute_graphql_file_upload_request(
 @patch.object(views.GraphQLView, 'execute_graphql_request')
 @patch('sentry_sdk.capture_exception')
 def test_execute_graphql_request_raises_raw_graphql_exceptions(
-    mocked_capture_exception,
-    mocked_method,
-    client,
+        mocked_capture_exception,
+        mocked_method,
+        client,
 ):
     error = GraphQLError(message='Syntax error in GraphQL query')
 
@@ -162,6 +161,7 @@ def test_execute_graphql_file_upload_request_raises_raw_graphql_exceptions(
         'Syntax error in GraphQL query'
     )
     mocked_capture_exception.assert_called_with(error)
+
 
 def test_graphiql_render(client: Client):
     result = client.get(reverse('graphiql'), HTTP_ACCEPT='text/html')

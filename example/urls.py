@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.views.decorators.csrf import csrf_exempt
 
-from graphene_django_sentry import SentryGraphQLView,\
+from graphene_sentry import SentryGraphQLView,\
     SentryFileUploadGraphQLView
 
 from .schema import schema  # Your graphQL schema

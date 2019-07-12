@@ -1,4 +1,4 @@
-* graphene_django_sentry version:
+* graphene_sentry version:
 * Python version:
 * Operating System:
 

@@ -50,15 +50,15 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 graphene_django_sentry tests
-	mypy --ignore-missing-imports graphene_django_sentry/ tests/
-	isort -c -rc graphene_django_sentry/ tests/
+	flake8 graphene_sentry tests
+	mypy --ignore-missing-imports graphene_sentry/ tests/
+	isort -c -rc graphene_sentry/ tests/
 
 test: ## run tests quickly with the default Python
 	pytest
 
 coverage:
-	py.test --cov-report html --cov=graphene_django_sentry tests/
+	py.test --cov-report html --cov=graphene_sentry tests/
 	$(BROWSER) htmlcov/index.html
 
 run-docs: ## generate Sphinx HTML documentation, including API docs
@@ -66,6 +66,9 @@ run-docs: ## generate Sphinx HTML documentation, including API docs
 
 release: dist ## package and upload a release
 	twine upload dist/*
+
+test_release: dist ## package and upload a release
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 dist: clean ## builds source and wheel package
 	python setup.py sdist

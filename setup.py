@@ -5,13 +5,13 @@
 
 from setuptools import find_packages, setup
 
-with open('README.rst') as readme_file:
+with open('README.md') as readme_file:
     readme = readme_file.read()
 
 requirements = [
-    'graphene_django==2.2.0',
+    'graphene_django>=2.2.0<=2.4.0',
     'graphene-file-upload==1.2.2',
-    'sentry-sdk==0.9.2',
+    'sentry-sdk>=0.5.2<=0.10.1',
 ]
 
 setup_requirements = ['pytest-runner', ]
@@ -19,8 +19,8 @@ setup_requirements = ['pytest-runner', ]
 test_requirements = ['pytest', ]
 
 setup(
-    author="Paul Hallett",
-    author_email='paulandrewhallett@gmail.com',
+    author="Alexander Lushnikov",
+    author_email='alexander.aka.alegz@gmail.com',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -33,14 +33,15 @@ setup(
     install_requires=requirements,
     license="MIT license",
     long_description=readme,
+    long_description_content_type='text/markdown',
     include_package_data=True,
-    keywords='GraphQL graphene django sentry',
-    name='graphene-django-sentry',
-    packages=find_packages(include=['graphene_django_sentry']),
+    keywords='GraphQL graphene sentry',
+    name='graphene-sentry',
+    packages=find_packages(include=['graphene_sentry']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/phalt/graphene-django-sentry',
-    version='0.3.1',
+    url='https://github.com/Alegzander/graphene-sentry',
+    version='0.4.0',
     zip_safe=False,
 )
